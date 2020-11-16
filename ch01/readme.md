@@ -22,3 +22,14 @@ javaw [-options] -jar jarfile [args]
 javaw命令和java命令几乎一样，唯一的差别在于，javaw命令不显示命令行窗口，因此特别适合用于启动GUI（图形用户界面）应用程序。
 
 >[完整java命令用法请参考](http://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html)
+
+## 1.3 编写命令行工具
+在Java语言中，API一般以类库的形式提供。在Go语言中，API 则是以包（package）的形式提供。包可以向用户提供常量、变量、结构体以及函数等。
+
+Java内置了丰富的类库，Go也同样内置了功能强大的包。本章将用到fmt、os和flag包。
+- os包定义了一个Args变量，其中存放传递给命令行的全部参数。
+- 如果直接处理os.Args变量，需要写很多代码。还好Go语言内置了flag包，这个包可以帮助我们处理命令行选项。有了flag包，我们的工作就简单了很多。
+
+### go的一些特性
+1. Go源文件一般以.go作为后缀，文件名全部小写，多个单词之间用下划线分隔。Go语言规范要求Go源文件必须使用UTF-8编码，详见https://golang.org/ref/spec。
+2. Go语言有函数（Function）和方法（Method）之分，方法调用需要receiver，函数调用则不需要。
