@@ -33,3 +33,6 @@ Java内置了丰富的类库，Go也同样内置了功能强大的包。本章�
 ### go的一些特性
 1. Go源文件一般以.go作为后缀，文件名全部小写，多个单词之间用下划线分隔。Go语言规范要求Go源文件必须使用UTF-8编码，详见https://golang.org/ref/spec。
 2. Go语言有函数（Function）和方法（Method）之分，方法调用需要receiver，函数调用则不需要。
+
+## 1.4 测试本章代码
+main.go
