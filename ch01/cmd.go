@@ -33,3 +33,9 @@ func parseCmd() *Cmd {
 func printUsage() {
 	fmt.Printf("Usage: %s [-options] class [args...]\n",os.Args[0])
 }
+
+
+func startJVM(cmd *Cmd)  {
+	fmt.Printf("classpath:[%s] class:[%s] args:%v\n",
+		cmd.cpOption,cmd.class,cmd.args)
+}
