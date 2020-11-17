@@ -52,3 +52,28 @@ java -cp path\to\lib2.zip ...
 ```
 java -cp classes;lib\* ...
 ```  
+
+## 2.2 准备工作
+
+将第一章的代码复制一份，增加一个classpath路径。
+
+- 增加一个非标准选项-Xjre
+- 更新相应代码
+
+## 2.3 实现类路径
+可以把类路径想象成一个大的整体，它由启动类路径、扩展类路径和用户类路径三个小路径构成。三个小路径又分别由更小的路径构成。是不是很像组合模式（composite pattern）？没错，本节就套用组合模式来设计和实现类路径。
+
+### 2.3.1 Entry接口
+
+在ch02\classpath\entry.go文件
+
+- 常量pathListSeparator是string类型，存放路径分隔符
+- readClass()方法负责寻找和加载class文件
+- String()相当于Java中的toString()
+- newEntry()函数根据参数创建不同类型的Entry实例（有四种）
+
+readClass()方法的参数是class文件的相对路径，路径之间用斜线（/）分隔，文件名有.class后缀。比如要读取java.lang.Object类，传入的参数应该是java/lang/Object.class。返回值是读取到的字节数据、最终定位到class文件的Entry，以及错误信息。Go的函数或方法允许返回多个值，按照惯例，可以使用最后一个返回值作为错误信息。
+
+### 2.3.2 DirEntry  
+目录形式的类路径
+- 只有一个字段，用于存放目录的绝对路径
