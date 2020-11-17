@@ -9,7 +9,7 @@ func main() {
 	}else if cmd.helpFlag{
 		printUsage()
 	}else{
-		startJVM(cmd);
+		startJVM(cmd)
 	}
 }
 
