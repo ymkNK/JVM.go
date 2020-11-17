@@ -16,6 +16,7 @@ func parseCmd() *Cmd {
 	cmd := &Cmd{}
 	flag.Usage = printUsage
 	flag.BoolVar(&cmd.helpFlag,"help",false,"print help message")
+	flag.BoolVar(&cmd.helpFlag,"h",false,"print help message")
 	flag.BoolVar(&cmd.helpFlag, "?",false,"print help message")
 	flag.BoolVar(&cmd.versionFlag,"version",false, "print version and exit")
 	flag.BoolVar(&cmd.versionFlag, "v",false, "print version and exit")
