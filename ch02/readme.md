@@ -82,3 +82,13 @@ readClass()方法的参数是class文件的相对路径，路径之间用斜线�
 用于表示ZIP或者JAR文件心事的类路径
 
 ### 2.3.4 CompositeEntry
+如前所述，CompositeEntry由更小的Entry组成，正好可以表示成[]Entry。
+- 在Go语言中，数组属于比较低层的数据结构，很少直接使用。大部分情况下，使用更便利的slice类型。
+- 构造函数把参数（路径列表）按分隔符分成小路径，然后把每个小路径都转换成具体的Entry实例
+- readClass():依次调用每一个子路径的readClass方法，如果成功读取到class数据，返回数据即可;如果收到错误信息则继续;如果遍历结束还没有找到class文件，则返回错误。
+
+### 2.3.5 WildcardEntry
+WildcardEntry实际上也是CompositeEntry，所以就不再定义新的类型了
+- 首先把路径末尾的星号去掉，得到baseDir，然后调用filepath包的Walk（）函数遍历baseDir创建ZipEntry。
+- Walk（）函数的第二个参数也是一个函数，了解函数式编程的读者应该一眼就可以认出这种用法（即函数可作为参数）。
+- 在walkFn中，根据后缀名选出JAR文件，并且返回SkipDir跳过子目录（通配符类路径不能递归匹配子目录下的JAR文件）。
