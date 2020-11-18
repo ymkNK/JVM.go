@@ -24,10 +24,10 @@ func (z ZipEntry) readClass(className string) ([]byte, Entry, error) {
 				return nil,nil,err
 			}
 			data,err:=ioutil.ReadAll(rc)
+			rc.Close()
 			if err != nil{
 				return nil, nil, err
 			}
-			rc.Close()
 			return data,z,nil
 		}
 	}
