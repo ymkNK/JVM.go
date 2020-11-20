@@ -92,3 +92,11 @@ WildcardEntry实际上也是CompositeEntry，所以就不再定义新的类型�
 - 首先把路径末尾的星号去掉，得到baseDir，然后调用filepath包的Walk（）函数遍历baseDir创建ZipEntry。
 - Walk（）函数的第二个参数也是一个函数，了解函数式编程的读者应该一眼就可以认出这种用法（即函数可作为参数）。
 - 在walkFn中，根据后缀名选出JAR文件，并且返回SkipDir跳过子目录（通配符类路径不能递归匹配子目录下的JAR文件）。
+
+
+### 2.3.6 Classpath
+接下来就是实现Classpath结构体，有三个字段，分别存放三种类路径。
+Parse()函数使用-Xjre选项解析启动类路径和扩展
+- 优先使用用户输入的-Xjre作为jre目录
+- 如果没有输入该选项，就在当前目录下寻找jre目录
+- 如果找不到，尝试使用JAVA_HOME环境变量
